@@ -1,6 +1,6 @@
 # Siva Kumar Eekalpa Portfolio
 
-A recruiter-focused React + Vite portfolio for Siva Kumar Eekalpa, a Java developer based in Hyderabad. It includes route-aware section navigation, responsive layouts, dark/light mode, reusable project/skill/contact/resume components, SEO metadata, live GitHub repository cards, a professional profile image, and an ATS-friendly Google Drive resume view.
+A recruiter-focused React + Vite portfolio for Sivakumar Eekalpa, a Java full stack developer based in Hyderabad. It includes route-aware section navigation, responsive layouts, dark/light mode, Framer Motion transitions, eight project case studies positioned directly after the hero, a scrollable project archive, live GitHub profile data, a professional portrait, and an ATS-friendly Google Drive resume view.
 
 ## Run locally
 
@@ -38,12 +38,12 @@ The app uses `HashRouter`, so section routes work on static hosting without rewr
 
 ## Dynamic profile data
 
-- GitHub repositories are fetched at runtime from the public GitHub API in `src/hooks/useGithubRepositories.js`. The UI shows loading and rate-limit/error states while keeping featured projects available.
-- Every non-fork repository returned by GitHub is displayed. Repositories matching Java, Spring, React, microservices, BookStore, or chatbot terms are prioritized before the rest, with stars, forks, language, description, and repository links shown.
+- GitHub repositories and profile metadata are fetched at runtime from the public GitHub API in `src/hooks/useGithubRepositories.js`. The UI shows public repository and star counts, leading languages, four recent repositories, detected repository/homepage links, and loading/error states while keeping the featured case studies available.
+- The GitHub activity link opens the canonical profile contribution view. GitHub's unauthenticated REST API does not expose a complete contribution history, so the portfolio does not fabricate a contribution total.
 - LinkedIn does not expose public profile data to unauthenticated browser requests. LinkedIn profile fields are therefore kept in `src/data.js` as a safe static snapshot with a link to the canonical profile. To synchronize headline, experience, education, or certifications automatically, add a small authenticated serverless endpoint using LinkedIn OAuth and point the frontend at that endpoint. Never put a LinkedIn client secret in Vite client code.
 - The supplied passport image is stored at `public/professional-passport-image.jpeg` and is included in production builds.
 - The resume is embedded from Google Drive using the provided preview URL, with direct Drive download and open-in-Drive actions.
-- The main portfolio page is lazy-loaded by Vite and the Google Drive iframe uses native lazy loading to reduce initial work.
+- The main portfolio page is lazy-loaded by Vite, the resume iframe uses native lazy loading, and motion respects the user's reduced-motion preference.
 
 ## Continuous deployment
 
@@ -51,4 +51,4 @@ Connect the GitHub repository to Netlify or Vercel and enable deploys from the d
 
 ## Content updates
 
-Candidate profile data, skills, education, and featured project content live in `src/data.js`. Reusable UI lives in `src/components/PortfolioComponents.jsx`; the GitHub integration lives in `src/hooks/useGithubRepositories.js`. Global layout and responsive styling live in `src/App.css`; base theme reset and typography settings live in `src/index.css`.
+Candidate profile data, skills, education, and journey milestones live in `src/data.js`. Featured case studies and archive entries use the shared project schema in `src/data/projects.js`. Reusable UI lives in `src/components/PortfolioComponents.jsx`; the GitHub integration and active-section observer live in `src/hooks/`. Global layout, design tokens, and responsive styling live in `src/App.css`; the small browser reset lives in `src/index.css`.
